@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 from io import BytesIO
 from maps import *
 import urllib.parse
+import ssl
 
 def create_boxplot(df, column, title, parameter):
     """Generate a vertical boxplot for the given DataFrame and column with parameter in the title."""
@@ -37,6 +38,8 @@ def main():
     station_number2 = station_map[station2]
     if station_number2 not in station_list:
         station_list.append(station_number2)
+
+    st.write("### Select a Parameter:")
 
     st.write("### Select a Parameter:")
     parameter = st.selectbox("Parameter", options=list(parameter_map.keys()))
@@ -91,6 +94,8 @@ def main():
                     f"unit_symbol,method_name,sample_depth&format=csv&dateformat=yyyy-MM-dd%20HH:mm:ss"
                     f"&csvdiv=,&maxquality=120&orderby=timestamp"
                 )
+
+                ssl._create_default_https_context = ssl._create_unverified_context
 
                 # Fetch and store data for the first and second stations
                 df1 = pd.read_csv(url1)
