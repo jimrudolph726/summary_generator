@@ -1,7 +1,7 @@
 streamlit
 pandas
 datetime
-matplotlib.pyplot
+matplotlib
 io
 maps
 urllib.parse
