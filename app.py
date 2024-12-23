@@ -39,8 +39,11 @@ def main():
         station_list.append(station_number2)
 
     st.write("### Select a Parameter:")
-    parameter_url = parameter_map[st.selectbox("Parameter", options=list(parameter_map.keys()))]
-    
+
+    st.write("### Select a Parameter:")
+    parameter = st.selectbox("Parameter", options=list(parameter_map.keys()))
+    parameter_url = parameter_map[parameter]
+
     # parameters_urls = parameters_urls.append(parameter_url)
     # parameters_urls = ','.join([p for p in parameters_urls if p])
 
