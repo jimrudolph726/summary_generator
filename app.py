@@ -40,9 +40,9 @@ def main():
 
     st.write("### Select a Parameter:")
     parameter_url = parameter_map[st.selectbox("Parameter", options=list(parameter_map.keys()))]
-    parameters_urls = parameters_urls.append(parameter_url)
-
-    parameters_urls = ','.join([p for p in parameters_urls if p])
+    
+    # parameters_urls = parameters_urls.append(parameter_url)
+    # parameters_urls = ','.join([p for p in parameters_urls if p])
 
     # Calendar widget for selecting start and end dates
     st.write("### Select a Start Date and End Date:")
