@@ -1,7 +1,4 @@
-streamlit
-pandas
-datetime
-matplotlib
-io
-maps
-urllib.parse
+streamlit==1.41.1
+pandas==2.2.3
+matplotlib==3.10.0
+datetime==5.5
