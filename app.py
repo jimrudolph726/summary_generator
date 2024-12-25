@@ -24,6 +24,7 @@ def create_boxplot(df, column, title, parameter):
     return buffer
 
 def main():
+    ssl._create_default_https_context = ssl._create_unverified_context
     station_list = []
     parameters_url = []
     st.title("Data Summary Generator")
@@ -57,7 +58,7 @@ def main():
                     f"unit_symbol,method_name,sample_depth&format=csv&dateformat=yyyy-MM-dd%20HH:mm:ss"
                     f"&csvdiv=,&maxquality=120&orderby=timestamp"
                 )
-    ssl._create_default_https_context = ssl._create_unverified_context
+    
     como3df = pd.read_csv(como3_url)
     print(como3df['value'])
     popup_html = f"""
