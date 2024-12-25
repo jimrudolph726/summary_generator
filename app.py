@@ -63,15 +63,15 @@ def main():
                 )
 
     como3df = pd.read_csv(como3url)
-
-
+    
+    df_html = como3df.to_html(classes="table table-striped", index=False)
     
     # Create a fake DataFrame
     data = {'Values': [1, 2, 3, 4, 5]}
     fake_df = pd.DataFrame(data)
     
     # Convert the DataFrame to HTML
-    df_html = fake_df.to_html(classes="table table-striped", index=False)
+    # df_html = fake_df.to_html(classes="table table-striped", index=False)
 
     # Add a marker for Como 3
     como_3_coords = [44.977791, -93.143328]
