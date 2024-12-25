@@ -39,6 +39,18 @@ def main():
         tiles="CartoDB Positron"  # Use custom tiles for a modern look
     )
 
+    # Calendar widget for selecting start and end dates
+    st.write("### Select a Start Date and End Date:")
+    start_date = st.date_input("Start Date", key="start_date")
+    end_date = st.date_input("End Date", key="end_date")
+    start_date_formatted = datetime.datetime.strptime(str(start_date), "%Y-%m-%d").strftime("%Y-%m-%d")
+    end_date_formatted = datetime.datetime.strptime(str(end_date), "%Y-%m-%d").strftime("%Y-%m-%d")
+    
+    # URL-encode the date strings
+    start_date_encoded = urllib.parse.quote(start_date_formatted)
+    end_date_encoded = urllib.parse.quote(end_date_formatted)
+
+    
     como3url = (
                     f"https://waterdata.capitolregionwd.org/KiWIS/KiWIS?datasource=0&service=kisters"
                     f"&type=queryServices&request=getWqmSampleValues&station_no=CRWD21"
@@ -99,16 +111,7 @@ def main():
     parameter = st.selectbox("Parameter", options=list(parameter_map.keys()))
     parameter_url = parameter_map[parameter]
 
-    # Calendar widget for selecting start and end dates
-    st.write("### Select a Start Date and End Date:")
-    start_date = st.date_input("Start Date", key="start_date")
-    end_date = st.date_input("End Date", key="end_date")
-    start_date_formatted = datetime.datetime.strptime(str(start_date), "%Y-%m-%d").strftime("%Y-%m-%d")
-    end_date_formatted = datetime.datetime.strptime(str(end_date), "%Y-%m-%d").strftime("%Y-%m-%d")
     
-    # URL-encode the date strings
-    start_date_encoded = urllib.parse.quote(start_date_formatted)
-    end_date_encoded = urllib.parse.quote(end_date_formatted)
 
     # Determine measuring program based on station type
     measuring_program = "lake" if "Lake" in station else "storm"
