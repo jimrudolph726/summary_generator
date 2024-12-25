@@ -62,7 +62,7 @@ def main():
                     f"&csvdiv=,&maxquality=120&orderby=timestamp"
                 )
 
-
+    como3df = pd.read_csv(como3url)
 
 
     
