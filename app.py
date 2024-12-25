@@ -63,8 +63,8 @@ def main():
                 )
 
     como3df = pd.read_csv(como3url)
-    
-    df_html = como3df['value'].to_html(classes="table table-striped", index=False)
+    como3df = como3df[['value']]
+    df_html = como3df.to_html(classes="table table-striped", index=False)
     
     # Create a fake DataFrame
     data = {'Values': [1, 2, 3, 4, 5]}
