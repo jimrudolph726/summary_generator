@@ -24,7 +24,7 @@ def create_boxplot(df, column, title, parameter):
     return buffer
 
 def main():
-    ssl._create_default_https_context = ssl._create_unverified_context
+    
     como3df = None
     como3url = (
                     f"https://waterdata.capitolregionwd.org/KiWIS/KiWIS?datasource=0&service=kisters"
@@ -142,7 +142,7 @@ def main():
                 )
 
                 
-
+                ssl._create_default_https_context = ssl._create_unverified_context
                 # Fetch and store data for the first and second stations
                 df1 = pd.read_csv(url1)
                 df2 = pd.read_csv(url2)
