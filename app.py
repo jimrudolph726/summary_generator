@@ -10,6 +10,7 @@ import numpy as np
 import folium
 from streamlit_folium import st_folium
 ssl._create_default_https_context = ssl._create_unverified_context
+
 def create_boxplot(df, column, title, parameter):
     """Generate a vertical boxplot for the given DataFrame and column with parameter in the title."""
     plt.figure(figsize=(6, 4))
@@ -38,7 +39,21 @@ def main():
         tiles="CartoDB Positron"  # Use custom tiles for a modern look
     )
 
+    como3url = (
+                    f"https://waterdata.capitolregionwd.org/KiWIS/KiWIS?datasource=0&service=kisters"
+                    f"&type=queryServices&request=getWqmSampleValues&station_no=CRWD21"
+                    f"&parametertype_name=Total%20Phosphorus&measuringprog_name=storm"
+                    f"&from={start_date_encoded}&to={end_date_encoded}"
+                    f"&returnfields=measuringprog_name,parametertype_name,station_name,timestamp,"
+                    f"sample_timestamp,value,value_sign,value_quality,value_remark,unit_name,"
+                    f"unit_symbol,method_name,sample_depth&format=csv&dateformat=yyyy-MM-dd%20HH:mm:ss"
+                    f"&csvdiv=,&maxquality=120&orderby=timestamp"
+                )
 
+
+
+
+    
     # Create a fake DataFrame
     data = {'Values': [1, 2, 3, 4, 5]}
     fake_df = pd.DataFrame(data)
