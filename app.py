@@ -24,7 +24,7 @@ def create_boxplot(df, column, title, parameter):
     return buffer
 
 def main():
-    ssl._create_default_https_context = ssl._create_unverified_context
+
     station_list = []
     parameters_url = []
     st.title("Data Summary Generator")
@@ -59,8 +59,8 @@ def main():
                     f"&csvdiv=,&maxquality=120&orderby=timestamp"
                 )
     
-    como3df = pd.read_csv(como3_url)
-    print(como3df['value'])
+    # como3df = pd.read_csv(como3_url)
+
     popup_html = f"""
     <div style="text-align: center;">
         <h4>Como 3 - Total Phosphorus Data</h4>
