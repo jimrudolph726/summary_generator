@@ -9,6 +9,7 @@ import ssl
 import numpy as np
 import folium
 from streamlit_folium import st_folium
+ssl._create_default_https_context = ssl._create_unverified_context
 
 def create_boxplot(df, column, title, parameter):
     """Generate a vertical boxplot for the given DataFrame and column with parameter in the title."""
@@ -152,8 +153,6 @@ def main():
                     f"unit_symbol,method_name,sample_depth&format=csv&dateformat=yyyy-MM-dd%20HH:mm:ss"
                     f"&csvdiv=,&maxquality=120&orderby=timestamp"
                 )
-
-                ssl._create_default_https_context = ssl._create_unverified_context
 
                 # Fetch and store data for the first and second stations
                 df1 = pd.read_csv(url1)
