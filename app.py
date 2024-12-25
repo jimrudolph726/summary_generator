@@ -38,6 +38,41 @@ def main():
         tiles="CartoDB Positron"  # Use custom tiles for a modern look
     )
 
+    # Get the dates for the last year
+    end_date = datetime.date.today()
+    start_date = end_date - datetime.timedelta(days=365)
+    
+    # Format the dates as strings
+    start_date_formatted = datetime.datetime.strptime(str(start_date), "%Y-%m-%d").strftime("%Y-%m-%d")
+    end_date_formatted = datetime.datetime.strptime(str(end_date), "%Y-%m-%d").strftime("%Y-%m-%d")
+    
+    # Generate the URL for phosphorus data
+    como3_url = (
+                    f"https://waterdata.capitolregionwd.org/KiWIS/KiWIS?datasource=0&service=kisters"
+                    f"&type=queryServices&request=getWqmSampleValues&station_no=CRWD21"
+                    f"&parametertype_name=Total%20Phosphorus&measuringprog_name=storm"
+                    f"&from={start_date_formatted}&to={end_date_formatted}"
+                    f"&returnfields=measuringprog_name,parametertype_name,station_name,timestamp,"
+                    f"sample_timestamp,value,value_sign,value_quality,value_remark,unit_name,"
+                    f"unit_symbol,method_name,sample_depth&format=csv&dateformat=yyyy-MM-dd%20HH:mm:ss"
+                    f"&csvdiv=,&maxquality=120&orderby=timestamp"
+                )
+    popup_html = f"""
+    <div style="text-align: center;">
+        <h4>Como 3 - Total Phosphorus Data</h4>
+        <iframe src="{como3_url}" width="400" height="300" frameborder="0"></iframe>
+        <p><a href="{como3_url}" target="_blank">View Full Graph</a></p>
+    </div>
+    """
+
+    como_3_coords = [44.977791, -93.143328]
+    folium.Marker(
+        como_3_coords,
+        popup=folium.Popup(popup_html, max_width=450),
+        tooltip="Click for Total Phosphorus Data",
+        icon=folium.Icon(color="green", icon="info-sign"),
+    ).add_to(map_st_paul)
+    
     # Add a marker for St. Paul
     folium.Marker(
         st_paul_coords,
