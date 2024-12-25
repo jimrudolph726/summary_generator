@@ -37,6 +37,14 @@ def main():
         zoom_start=12, 
         tiles="CartoDB Positron"  # Use custom tiles for a modern look
     )
+    # Add a marker for Como 3
+    como_3_coords = [44.977791, -93.143328]
+    folium.Marker(
+        como_3_coords,
+        popup="Como 3",
+        tooltip="Click for more info",
+        icon=folium.Icon(color="green", icon="info-sign"),
+    ).add_to(map_st_paul)
 
     # Add a marker for St. Paul
     folium.Marker(
