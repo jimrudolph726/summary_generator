@@ -9,7 +9,6 @@ import ssl
 import numpy as np
 import folium
 from streamlit_folium import st_folium
-ssl._create_default_https_context = ssl._create_unverified_context
 
 def create_boxplot(df, column, title, parameter):
     """Generate a vertical boxplot for the given DataFrame and column with parameter in the title."""
@@ -39,7 +38,13 @@ def main():
         tiles="CartoDB Positron"  # Use custom tiles for a modern look
     )
     # Add a marker for Como 3
-    
+    como_3_coords = [44.977791, -93.143328]
+    folium.Marker(
+        como_3_coords,
+        popup="Como 3",
+        tooltip="Click for more info",
+        icon=folium.Icon(color="green", icon="info-sign"),
+    ).add_to(map_st_paul)
 
     # Add a marker for St. Paul
     folium.Marker(
@@ -76,26 +81,6 @@ def main():
     end_date = st.date_input("End Date", key="end_date")
     start_date_formatted = datetime.datetime.strptime(str(start_date), "%Y-%m-%d").strftime("%Y-%m-%d")
     end_date_formatted = datetime.datetime.strptime(str(end_date), "%Y-%m-%d").strftime("%Y-%m-%d")
-
-    como3url = (
-                    f"https://waterdata.capitolregionwd.org/KiWIS/KiWIS?datasource=0&service=kisters"
-                    f"&type=queryServices&request=getWqmSampleValues&station_no=CRWD21"
-                    f"&parametertype_name=Total%20Phosphorus&measuringprog_name=storm"
-                    f"&from={start_date_encoded}&to={end_date_encoded}"
-                    f"&returnfields=measuringprog_name,parametertype_name,station_name,timestamp,"
-                    f"sample_timestamp,value,value_sign,value_quality,value_remark,unit_name,"
-                    f"unit_symbol,method_name,sample_depth&format=csv&dateformat=yyyy-MM-dd%20HH:mm:ss"
-                    f"&csvdiv=,&maxquality=120&orderby=timestamp"
-                )
-    como3df = pd.read_csv(como3url)
-    
-    como_3_coords = [44.977791, -93.143328]
-    folium.Marker(
-        como_3_coords,
-        popup="Como 3",
-        tooltip="Click for more info",
-        icon=folium.Icon(color="green", icon="info-sign"),
-    ).add_to(map_st_paul)
     
     # URL-encode the date strings
     start_date_encoded = urllib.parse.quote(start_date_formatted)
@@ -137,7 +122,7 @@ def main():
                     f"&csvdiv=,&maxquality=120&orderby=timestamp"
                 )
 
-                
+                ssl._create_default_https_context = ssl._create_unverified_context
 
                 # Fetch and store data for the first and second stations
                 df1 = pd.read_csv(url1)
