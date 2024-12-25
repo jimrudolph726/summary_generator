@@ -6,6 +6,7 @@ from io import BytesIO
 from maps import *
 import urllib.parse
 import ssl
+import numpy as np
 
 def create_boxplot(df, column, title, parameter):
     """Generate a vertical boxplot for the given DataFrame and column with parameter in the title."""
@@ -25,6 +26,16 @@ def main():
     parameters_url = []
     st.title("Data Summary Generator")
 
+    # Map widget
+    st.write("### Map of Saint Paul, MN:")
+    map_data = pd.DataFrame(
+        {
+            'latitude': [44.9537],  # Latitude of Saint Paul
+            'longitude': [-93.0900]  # Longitude of Saint Paul
+        }
+    )
+    st.map(map_data, zoom=12)  # Centered on Saint Paul with appropriate zoom level
+
     # Dropdown for station selection
     st.write("### Select a Station:")
     station = st.selectbox("", options=list(station_map.keys()))
@@ -42,9 +53,6 @@ def main():
     st.write("### Select a Parameter:")
     parameter = st.selectbox("Parameter", options=list(parameter_map.keys()))
     parameter_url = parameter_map[parameter]
-
-    # parameters_urls = parameters_urls.append(parameter_url)
-    # parameters_urls = ','.join([p for p in parameters_urls if p])
 
     # Calendar widget for selecting start and end dates
     st.write("### Select a Start Date and End Date:")
