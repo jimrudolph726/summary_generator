@@ -4,4 +4,4 @@ matplotlib==3.10.0
 datetime==5.5
 xlsxwriter
 folium
-streamlit folium
+streamlit-folium
