@@ -57,11 +57,14 @@ def main():
                     f"unit_symbol,method_name,sample_depth&format=csv&dateformat=yyyy-MM-dd%20HH:mm:ss"
                     f"&csvdiv=,&maxquality=120&orderby=timestamp"
                 )
+    
+    como3df = pd.read_csv(como3_url)
+    
     popup_html = f"""
     <div style="text-align: center;">
         <h4>Como 3 - Total Phosphorus Data</h4>
-        <iframe src="{como3_url}" width="400" height="300" frameborder="0"></iframe>
-        <p><a href="{como3_url}" target="_blank">View Full Graph</a></p>
+        <iframe src="{como3df['value']}" width="400" height="300" frameborder="0"></iframe>
+        <p><a href="{como3df['value']}" target="_blank">View Full Graph</a></p>
     </div>
     """
 
