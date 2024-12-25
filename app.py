@@ -24,25 +24,6 @@ def create_boxplot(df, column, title, parameter):
     return buffer
 
 def main():
-    
-    como3df = None
-    como3url = (
-                    f"https://waterdata.capitolregionwd.org/KiWIS/KiWIS?datasource=0&service=kisters"
-                    f"&type=queryServices&request=getWqmSampleValues&station_no=CRWD21"
-                    f"&parametertype_name=Total%20Phosphorus&measuringprog_name=storm"
-                    f"&from=2016-05-20&to=2022-05-20"
-                    f"&returnfields=measuringprog_name,parametertype_name,station_name,timestamp,"
-                    f"sample_timestamp,value,value_sign,value_quality,value_remark,unit_name,"
-                    f"unit_symbol,method_name,sample_depth&format=csv&dateformat=yyyy-MM-dd%20HH:mm:ss"
-                    f"&csvdiv=,&maxquality=120&orderby=timestamp"
-                )
-
-    # como3df = pd.read_csv(como3url)
-
-
-
-
-    
     station_list = []
     parameters_url = []
     st.title("Data Summary Generator")
@@ -141,8 +122,8 @@ def main():
                     f"&csvdiv=,&maxquality=120&orderby=timestamp"
                 )
 
-                
                 ssl._create_default_https_context = ssl._create_unverified_context
+
                 # Fetch and store data for the first and second stations
                 df1 = pd.read_csv(url1)
                 df2 = pd.read_csv(url2)
