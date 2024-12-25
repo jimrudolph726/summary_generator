@@ -24,17 +24,32 @@ def create_boxplot(df, column, title, parameter):
 def main():
     station_list = []
     parameters_url = []
-    st.title("Data Summary Generator")
+        st.title("Data Summary Generator with Enhanced Map")
 
-    # Map widget
-    st.write("### Map of Saint Paul, MN:")
-    map_data = pd.DataFrame(
-        {
-            'latitude': [44.9537],  # Latitude of Saint Paul
-            'longitude': [-93.0900]  # Longitude of Saint Paul
-        }
+    # Add map widget centered on St. Paul, MN
+    st.write("### Map of St. Paul, MN")
+    st.write("This map is centered on St. Paul, MN with enhanced aesthetics.")
+    
+    # Center coordinates for St. Paul, MN
+    st_paul_coords = [44.9537, -93.09]
+    
+    # Create the map with custom tiles
+    map_st_paul = folium.Map(
+        location=st_paul_coords, 
+        zoom_start=12, 
+        tiles="CartoDB Positron"  # Use custom tiles for a modern look
     )
-    st.map(map_data, zoom=12)  # Centered on Saint Paul with appropriate zoom level
+
+    # Add a marker for St. Paul
+    folium.Marker(
+        st_paul_coords,
+        popup="St. Paul, MN",
+        tooltip="Click for more info",
+        icon=folium.Icon(color="blue", icon="info-sign"),
+    ).add_to(map_st_paul)
+
+    # Render the map in Streamlit
+    st_folium(map_st_paul, width=700, height=500)
 
     # Dropdown for station selection
     st.write("### Select a Station:")
