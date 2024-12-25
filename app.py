@@ -24,7 +24,7 @@ def create_boxplot(df, column, title, parameter):
 def main():
     station_list = []
     parameters_url = []
-        st.title("Data Summary Generator with Enhanced Map")
+    st.title("Data Summary Generator with Enhanced Map")
 
     # Add map widget centered on St. Paul, MN
     st.write("### Map of St. Paul, MN")
