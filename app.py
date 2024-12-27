@@ -40,7 +40,6 @@ def main():
     )
 
     # Calendar widget for selecting start and end dates
-    st.write("### Select a Start Date and End Date:")
     start_date = st.date_input("Start Date", key="start_date")
     end_date = st.date_input("End Date", key="end_date")
     start_date_formatted = datetime.datetime.strptime(str(start_date), "%Y-%m-%d").strftime("%Y-%m-%d")
