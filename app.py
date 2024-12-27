@@ -150,7 +150,7 @@ def main():
                 )
 
                 
-
+                print(url1)
                 # Fetch and store data for the first and second stations
                 df1 = pd.read_csv(url1)
                 df2 = pd.read_csv(url2)
