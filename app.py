@@ -7,8 +7,6 @@ from maps import *
 import urllib.parse
 import ssl
 import numpy as np
-import folium
-from streamlit_folium import st_folium
 
 def create_boxplot(df, column, title, parameter):
     """Generate a vertical boxplot for the given DataFrame and column with parameter in the title."""
