@@ -28,7 +28,7 @@ def main():
     
     # Dropdown for station selection
     st.write("### Select a Station:")
-    station = st.selectbox("", options=list(station_map.keys()), label_visibility="hidden")
+    station = st.selectbox("", options=list(station_map.keys()))
     station_number = station_map[station]
     if station_number not in station_list:
         station_list.append(station_number)
