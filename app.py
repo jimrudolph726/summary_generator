@@ -7,6 +7,8 @@ from maps import *
 import urllib.parse
 import ssl
 import numpy as np
+import folium
+from streamlit_folium import st_folium
 
 def create_boxplot(df, column, title, parameter):
     """Generate a vertical boxplot for the given DataFrame and column with parameter in the title."""
@@ -25,7 +27,36 @@ def main():
     station_list = []
     parameters_url = []
     st.title("Data Summary Generator")
+
+    # Center coordinates for St. Paul, MN
+    st_paul_coords = [44.9537, -93.09]
     
+    # Create the map with custom tiles
+    map_st_paul = folium.Map(
+        location=st_paul_coords, 
+        zoom_start=12, 
+        tiles="CartoDB Positron"  # Use custom tiles for a modern look
+    )
+    # Add a marker for Como 3
+    como_3_coords = [44.977791, -93.143328]
+    folium.Marker(
+        como_3_coords,
+        popup="Como 3",
+        tooltip="Click for more info",
+        icon=folium.Icon(color="green", icon="info-sign"),
+    ).add_to(map_st_paul)
+
+    # Add a marker for St. Paul
+    folium.Marker(
+        st_paul_coords,
+        popup="St. Paul, MN",
+        tooltip="Click for more info",
+        icon=folium.Icon(color="blue", icon="info-sign"),
+    ).add_to(map_st_paul)
+
+    # Render the map in Streamlit
+    st_folium(map_st_paul, width=700, height=500)
+
     # Dropdown for station selection
     st.write("### Select a Station:")
     station = st.selectbox("", options=list(station_map.keys()))
