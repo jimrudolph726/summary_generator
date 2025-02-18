@@ -53,10 +53,7 @@ def main():
         tooltip="Click for more info",
         icon=folium.Icon(color="blue", icon="info-sign"),
     ).add_to(map_st_paul)
-
-    # Render the map in Streamlit
-    st_folium(map_st_paul, width=700, height=500)
-
+    
     # Dropdown for station selection
     st.write("### Select a Station:")
     station = st.selectbox("", options=list(station_map.keys()))
